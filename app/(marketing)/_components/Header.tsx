@@ -12,7 +12,7 @@ const Header = () => {
   const { isAuthenticated, isLoading } = useConvexAuth()
 
   return (
-    <div className='max-w-3xl space-y-4'>
+    <div className='max-w-4xl space-y-4'>
       <h1 className='text-3xl font-bold md:text-6xl sm:text-5xl'>Write, Plan, Organize, Play </h1>
       <h3 className='text-base sm:text-xl md:text-2xl font-medium'>Turn ideas into action
         with Motion’s AI-powered workspace.</h3>
