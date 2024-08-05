@@ -1,5 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { Toaster } from "sonner";
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { ConvexClientProvider } from '@/components/providers/convex-provider'
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ConvexClientProvider>
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange storageKey='moshan-theme'>
+            <Toaster position='bottom-center'/>
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

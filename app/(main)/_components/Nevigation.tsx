@@ -34,7 +34,7 @@ const Nevigation = () => {
         if (!isResizingRef.current) return;
         let newWidth = e.clientX;
 
-        if (newWidth < 240) newWidth = 240;
+        if (newWidth < 320) newWidth = 320;
         if (newWidth > 480) newWidth = 480;
 
         if (sidebarRef.current && navbarRef.current) {
@@ -58,14 +58,14 @@ const Nevigation = () => {
             setIsCollapsed(true);
             setIsResetting(true);
 
-            sidebarRef.current.style.width = isMobile ? "100%" : "240px";
+            sidebarRef.current.style.width = isMobile ? "100%" : "320px";
             navbarRef.current.style.setProperty(
                 "width",
-                isMobile ? "0" : "calc(100%-240px)",
+                isMobile ? "0" : "calc(100%-320px)",
             )
             navbarRef.current.style.setProperty(
                 "left",
-                isMobile ? "100%" : "240px"
+                isMobile ? "100%" : "320px"
             )
             setTimeout(() => setIsResetting(false), 300)
         }
@@ -120,7 +120,7 @@ const Nevigation = () => {
                 />
             </aside>
             <div ref={navbarRef} className={cn(
-                "absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",
+                "absolute top-0 z-[99999] left-80 w-[calc(100%-320px)]",
                 isResetting && "transition-all ease-in-out duration-300",
                 isMobile && "left-0 w-full"
             )}>
