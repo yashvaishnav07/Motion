@@ -1,9 +1,14 @@
 import { cn } from '@/lib/utils'
-import { ChevronsLeft, MenuIcon } from 'lucide-react'
+import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import React, { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts"
 import UserItem from './UserItem';
+import { Item } from './Item';
+import { toast } from 'sonner';
+import { useMutation } from 'convex/react';
+import { api } from '@/convex/_generated/api';
+import DocumentList from './DocumentList';
 
 const Nevigation = () => {
     const pathName = usePathname();
@@ -12,6 +17,7 @@ const Nevigation = () => {
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ElementRef<"aside">>(null);
     const navbarRef = useRef<ElementRef<"div">>(null);
+    const create = useMutation(api.documents.create);
 
     const [isResetting, setIsResetting] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -94,6 +100,16 @@ const Nevigation = () => {
         }
     }
 
+    const handleCreate = () => {
+        const promise = create({ title: "Untitled" });
+
+        toast.promise(promise, {
+            loading: "Creating a new note....",
+            success: "New note created.",
+            error: "Failed to create a note.",
+        });
+    };
+
     return (
         <>
             <aside ref={sidebarRef} className={cn(
@@ -109,9 +125,12 @@ const Nevigation = () => {
                 </div>
                 <div>
                     <UserItem />
+                    <Item label="Search" onClick={() => { }} icon={Search} isSearch />
+                    <Item label="Setting" onClick={() => { }} icon={Settings} />
+                    <Item label="New Page" onClick={handleCreate} icon={PlusCircle} />
                 </div>
                 <div className='mt-4'>
-                    <p>Documents</p>
+                    <DocumentList />
                 </div>
                 <div
                     onMouseDown={handleMouseDown}
