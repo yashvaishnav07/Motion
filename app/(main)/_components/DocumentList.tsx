@@ -30,8 +30,11 @@ const DocumentList = ({
     });
 
     const onExpand = (documentId: string) => {
-
-    }
+        setExpanded((prevExpanded) => ({
+            ...prevExpanded,
+            [documentId]: !prevExpanded[documentId],
+        }));
+    };
 
     const onRedirect = (documentId: string) => {
         router.push(`/documents/${documentId}`);
