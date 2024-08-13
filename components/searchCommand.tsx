@@ -26,6 +26,7 @@ export const SearchCommand = () => {
     const toggle = useSearch((store) => store.toggle);
     const isOpen = useSearch((store) => store.isOpen);
     const onClose = useSearch((store) => store.onClose);
+    const onOpen = useSearch((store) => store.onOpen);
 
     useEffect(() => {
         setIsMounted(true);

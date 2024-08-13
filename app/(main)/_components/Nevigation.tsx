@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { ChevronsLeft, MenuIcon, Plus, PlusCircle, PlusCircleIcon, PlusIcon, Search, Settings, Trash } from 'lucide-react'
+import { ChevronsLeft, MenuIcon, PlusCircle, PlusIcon, Search, Settings, Trash } from 'lucide-react'
 import { useParams, usePathname } from 'next/navigation'
 import React, { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts"
