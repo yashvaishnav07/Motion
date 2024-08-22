@@ -45,7 +45,7 @@ export const Item = ({
     const onArchive = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         event.stopPropagation();
         if (!id) return;
-        const promise = archive({ id });
+        const promise = archive({ id }).then(() => router.push('/documents'))
 
         toast.promise(promise, {
             loading: "Moving to trash...",
@@ -108,7 +108,7 @@ export const Item = ({
                     {documentIcon}
                 </div>
             ) : (
-                <Icon className='shrink-0 h-[17px] mr-2 text-muted-foreground' />
+                <Icon className='shrink-0 h-[17px] w-[17px] mr-2 text-muted-foreground' />
             )}
             <span className='truncate'>{label}</span>
             {isSearch && (

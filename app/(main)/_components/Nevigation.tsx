@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { ChevronsLeft, MenuIcon, PlusCircle, PlusIcon, Search, Settings, Trash } from 'lucide-react'
-import { useParams, usePathname } from 'next/navigation'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 import React, { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts"
 import UserItem from './UserItem';
@@ -19,6 +19,7 @@ const Nevigation = () => {
     const pathName = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)")
     const params = useParams();
+    const router = useRouter();
 
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -106,7 +107,9 @@ const Nevigation = () => {
     }
 
     const handleCreate = () => {
-        const promise = create({ title: "Untitled" });
+        const promise = create({ title: "Untitled" }).then((documentId) =>
+            router.push(`/documents/${documentId}`),
+        );
 
         toast.promise(promise, {
             loading: "Creating a new note....",
